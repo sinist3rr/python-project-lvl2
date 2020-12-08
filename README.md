@@ -1,5 +1,10 @@
 # Проект "Вычислитель отличий"
 
+---
+[![Maintainability](https://api.codeclimate.com/v1/badges/f4f501f2dddceddbb013/maintainability)](https://codeclimate.com/github/sinist3rr/python-project-lvl2/maintainability)
+![Build_and_Test](https://github.com/sinist3rr/python-project-lvl2/workflows/gendiff/badge.svg)
+
+
 ### Hexlet tests and linter status:
 ![Actions Status](/workflows/hexlet-check/badge.svg)
 

@@ -1,6 +1,9 @@
 install:
 	@poetry install
 
+test:
+	poetry run pytest --cov=gendiff tests/ --cov-report xml
+
 lint:
 	poetry run flake8 gendiff
 
@@ -12,4 +15,4 @@ check: selfcheck lint
 build: check
 	@poetry build
 
-.PHONY: install lint selfcheck check build
+.PHONY: install test lint selfcheck check build

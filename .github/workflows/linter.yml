@@ -17,6 +17,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Runs the Linter action
+      - name: Install poetry
+        run: make install
       - name: Run my linter
         run: make lint

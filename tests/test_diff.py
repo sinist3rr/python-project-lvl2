@@ -40,3 +40,13 @@ def test_simple_json(sample_paths_json, sample_result):
 def test_simple_json2(sample_paths_json, sample_result2):
     """Check that json diff works."""
     assert generate_diff(sample_paths_json[2], sample_paths_json[2]) == sample_result2
+
+
+def test_simple_yaml(sample_paths_yaml, sample_result):
+    """Check that yaml diff works."""
+    assert generate_diff(sample_paths_yaml[0], sample_paths_yaml[1]) == sample_result
+
+
+def test_simple_yaml2(sample_paths_yaml, sample_result2):
+    """Check that yaml diff works."""
+    assert generate_diff(sample_paths_yaml[2], sample_paths_yaml[2]) == sample_result2

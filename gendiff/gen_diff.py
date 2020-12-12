@@ -1,4 +1,5 @@
 import json
+import yaml
 
 
 def bool_transform(item):
@@ -17,11 +18,20 @@ def print_like_json(item):
     return result
 
 
+def parse_file(filename):
+    if filename.endswith('.json'):
+        with open(filename, 'r') as jsonfile:
+            return json.load(jsonfile)
+    if filename.endswith('.yml'):
+        with open(filename) as ymlfile:
+            return yaml.load(ymlfile, Loader=yaml.FullLoader)
+    return 'unknown file type'
+
+
 def generate_diff(file1, file2):
-    with open(file1, 'r') as openfile:
-        file1_dict = json.load(openfile)
-    with open(file2, 'r') as openfile:
-        file2_dict = json.load(openfile)
+    file1_dict = parse_file(file1)
+    file2_dict = parse_file(file2)
+
     diff_store = []
 
     for i in file1_dict:

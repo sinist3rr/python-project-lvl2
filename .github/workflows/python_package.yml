@@ -21,13 +21,12 @@ jobs:
         python -m pip install --upgrade pip
         pip install poetry
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Lint with flake8
+    - name: Install project
       run: |
         make install
-        make lint
-    - name: Test with pytest
+    - name: Lint with flake8
       run: |
-        make test
+        make lint
     - name: Test & publish code coverage
       uses: paambaati/codeclimate-action@v2.5.7
       env:

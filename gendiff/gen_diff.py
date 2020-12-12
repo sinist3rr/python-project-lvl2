@@ -13,7 +13,7 @@ def bool_transform(item):
 def print_like_json(item):
     result = '{\n'
     for i in item:
-        result += '\t{} {}: {}\n'.format(i[1], i[0], i[2])
+        result += '\t{} {}: {}\n'.format(i[0], i[1], bool_transform(i[2]))
     result += '}\n'
     return result
 
@@ -31,22 +31,21 @@ def parse_file(filename):
 def generate_diff(file1, file2):
     file1_dict = parse_file(file1)
     file2_dict = parse_file(file2)
-
     diff_store = []
 
     for i in file1_dict:
         if i in file2_dict:
             if file1_dict[i] == file2_dict[i]:
-                diff_store.append((i, ' ', bool_transform(file1_dict[i])))
+                diff_store.append((' ', i, file1_dict[i]))
             else:
-                diff_store.append((i, '-', bool_transform(file1_dict[i])))
-                diff_store.append((i, '+', bool_transform(file2_dict[i])))
+                diff_store.append(('-', i, file1_dict[i]))
+                diff_store.append(('+', i, file2_dict[i]))
         else:
-            diff_store.append((i, '-', bool_transform(file1_dict[i])))
+            diff_store.append(('-', i, file1_dict[i]))
 
     for i in file2_dict:
         if i not in file1_dict:
-            diff_store.append((i, '+', bool_transform(file2_dict[i])))
+            diff_store.append(('+', i, file2_dict[i]))
 
-    diff_store.sort(key=lambda x: x[0])
+    diff_store.sort(key=lambda x: x[1])
     return print_like_json(diff_store)

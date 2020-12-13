@@ -31,20 +31,22 @@ def parse_file(filename):
 def generate_diff(file1, file2):
     file1_dict = parse_file(file1)
     file2_dict = parse_file(file2)
+    file1_keys = set(file1_dict)
+    file2_keys = set(file2_dict)
+    shared_keys = file1_keys.intersection(file2_keys)
+    added_keys = file2_keys.difference(file1_keys)
+    removed_keys = file1_keys.difference(file2_keys)
     diff_store = []
 
-    for i in file1_dict:
-        if i in file2_dict:
-            if file1_dict[i] == file2_dict[i]:
-                diff_store.append((' ', i, file1_dict[i]))
-            else:
-                diff_store.append(('-', i, file1_dict[i]))
-                diff_store.append(('+', i, file2_dict[i]))
+    for i in added_keys:
+        diff_store.append(('+', i, file2_dict[i]))
+    for i in removed_keys:
+        diff_store.append(('-', i, file1_dict[i]))
+    for i in shared_keys:
+        if file1_dict[i] == file2_dict[i]:
+            diff_store.append((' ', i, file1_dict[i]))
         else:
             diff_store.append(('-', i, file1_dict[i]))
-
-    for i in file2_dict:
-        if i not in file1_dict:
             diff_store.append(('+', i, file2_dict[i]))
 
     diff_store.sort(key=lambda x: x[1])

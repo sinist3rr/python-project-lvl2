@@ -1,5 +1,4 @@
-import json
-import yaml
+from gendiff.parse_files import parsing_file
 
 
 def bool_transform(item):
@@ -18,19 +17,9 @@ def print_like_json(item):
     return result
 
 
-def parse_file(filename):
-    if filename.endswith('.json'):
-        with open(filename, 'r') as jsonfile:
-            return json.load(jsonfile)
-    if filename.endswith('.yml'):
-        with open(filename) as ymlfile:
-            return yaml.load(ymlfile, Loader=yaml.FullLoader)
-    return 'unknown file type'
-
-
 def generate_diff(file1, file2):
-    file1_dict = parse_file(file1)
-    file2_dict = parse_file(file2)
+    file1_dict = parsing_file(file1)
+    file2_dict = parsing_file(file2)
     file1_keys = set(file1_dict)
     file2_keys = set(file2_dict)
     shared_keys = file1_keys.intersection(file2_keys)

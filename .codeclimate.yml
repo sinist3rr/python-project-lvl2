@@ -1,2 +1,3 @@
 exclude_paths:
  - "*gendiff/scripts/__init__.py*"
+ - "*test/*"

@@ -1,4 +1,4 @@
-name: gendiff
+name: build & test
 
 on: [push]
 

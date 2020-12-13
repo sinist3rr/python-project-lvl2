@@ -11,6 +11,8 @@
 
 ### asciinema
 
-**gendiff basics**
-[![gendiff-basic](https://asciinema.org/a/u2NB0QMgdrHexiLZM2iKkfZ0G.svg)](https://asciinema.org/a/u2NB0QMgdrHexiLZM2iKkfZ0G)
+**gendiff json**
+[![gendiff-json](https://asciinema.org/a/u2NB0QMgdrHexiLZM2iKkfZ0G.svg)](https://asciinema.org/a/u2NB0QMgdrHexiLZM2iKkfZ0G)
 
+**gendiff json**
+[![gendiff-yaml](https://asciinema.org/a/Ex2F4cCEzt098fCMRzVTwLm06.svg)](https://asciinema.org/a/Ex2F4cCEzt098fCMRzVTwLm06)

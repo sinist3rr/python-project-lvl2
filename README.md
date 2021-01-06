@@ -16,3 +16,6 @@
 
 **gendiff yaml**\
 [![gendiff-yaml](https://asciinema.org/a/Ex2F4cCEzt098fCMRzVTwLm06.svg)](https://asciinema.org/a/Ex2F4cCEzt098fCMRzVTwLm06)
+
+**gendiff nested json**\
+[![gendiff-nested-json](https://asciinema.org/a/dsqlqqmBECIrgnvVIiuQRZ0gt.svg)](https://asciinema.org/a/dsqlqqmBECIrgnvVIiuQRZ0gt)

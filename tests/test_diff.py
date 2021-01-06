@@ -42,29 +42,29 @@ def sample_nested_result():
 
 def test_simple_json(sample_paths_json, sample_result):
     """Check that json diff works."""
-    assert generate_diff(sample_paths_json[0], sample_paths_json[1]) == sample_result
+    assert generate_diff(sample_paths_json[0], sample_paths_json[1], 'json') == sample_result
 
 
 def test_simple_json2(sample_paths_json, sample_result2):
     """Check that json diff works."""
-    assert generate_diff(sample_paths_json[2], sample_paths_json[2]) == sample_result2
+    assert generate_diff(sample_paths_json[2], sample_paths_json[2], 'json') == sample_result2
 
 
 def test_simple_yaml(sample_paths_yaml, sample_result):
     """Check that yaml diff works."""
-    assert generate_diff(sample_paths_yaml[0], sample_paths_yaml[1]) == sample_result
+    assert generate_diff(sample_paths_yaml[0], sample_paths_yaml[1], 'json') == sample_result
 
 
 def test_simple_yaml2(sample_paths_yaml, sample_result2):
     """Check that yaml diff works."""
-    assert generate_diff(sample_paths_yaml[2], sample_paths_yaml[2]) == sample_result2
+    assert generate_diff(sample_paths_yaml[2], sample_paths_yaml[2], 'json') == sample_result2
 
 
 def test_nested_json(sample_paths_json, sample_nested_result):
     """Check that json diff works."""
-    assert generate_diff(sample_paths_json[3], sample_paths_json[4]) == sample_nested_result
+    assert generate_diff(sample_paths_json[3], sample_paths_json[4], 'json') == sample_nested_result
 
 
 def test_nested_yaml(sample_paths_yaml, sample_nested_result):
     """Check that yaml diff works."""
-    assert generate_diff(sample_paths_yaml[3], sample_paths_yaml[4]) == sample_nested_result
+    assert generate_diff(sample_paths_yaml[3], sample_paths_yaml[4], 'json') == sample_nested_result

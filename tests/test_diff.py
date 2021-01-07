@@ -40,6 +40,14 @@ def sample_nested_result():
         return line
 
 
+@pytest.fixture
+def sample_nested_result_plain():
+    filepath = 'tests/fixtures/sample_nested_result_plain.txt'
+    with open(filepath) as fp:
+        line = fp.read()
+        return line
+
+
 def test_simple_json(sample_paths_json, sample_result):
     """Check that json diff works."""
     assert generate_diff(sample_paths_json[0], sample_paths_json[1], 'json') == sample_result
@@ -68,3 +76,8 @@ def test_nested_json(sample_paths_json, sample_nested_result):
 def test_nested_yaml(sample_paths_yaml, sample_nested_result):
     """Check that yaml diff works."""
     assert generate_diff(sample_paths_yaml[3], sample_paths_yaml[4], 'json') == sample_nested_result
+
+
+def test_nested_json_plain(sample_paths_json, sample_nested_result_plain):
+    """Check that json diff works in plain format."""
+    assert generate_diff(sample_paths_json[3], sample_paths_json[4], 'plain') == sample_nested_result_plain

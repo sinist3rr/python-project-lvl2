@@ -19,3 +19,6 @@
 
 **gendiff nested json**\
 [![gendiff-nested-json](https://asciinema.org/a/dsqlqqmBECIrgnvVIiuQRZ0gt.svg)](https://asciinema.org/a/dsqlqqmBECIrgnvVIiuQRZ0gt)
+
+**gendiff plain format**\
+[![gendiff-plain-format](https://asciinema.org/a/N5gBbSzaJFW6gTHY80RPpeyDQ.svg)](https://asciinema.org/a/N5gBbSzaJFW6gTHY80RPpeyDQ)

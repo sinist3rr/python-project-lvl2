@@ -1,6 +1,7 @@
 from gendiff.parse_files import parsing_file
 from gendiff.formaters.stylish_format import stylish_format
 from gendiff.formaters.plain_format import plain_format
+from gendiff.formaters.json_format import json_format
 
 
 def diff_tree(d1, d2):
@@ -38,6 +39,8 @@ def generate_diff(file1, file2, FORMAT):
         final_result = '{}}}\n'.format(stylish_format(tree))
     elif FORMAT == 'plain':
         final_result = plain_format(tree)
+    elif FORMAT == 'json':
+        final_result = json_format(tree)
     else:
         final_result = '{}}}\n'.format(stylish_format(tree))
     return final_result

@@ -48,36 +48,49 @@ def sample_nested_result_plain():
         return line
 
 
+@pytest.fixture
+def sample_nested_result_json():
+    filepath = 'tests/fixtures/sample_nested_result_json.txt'
+    with open(filepath) as fp:
+        line = fp.read()
+        return line
+
+
 def test_simple_json(sample_paths_json, sample_result):
     """Check that json diff works."""
-    assert generate_diff(sample_paths_json[0], sample_paths_json[1], 'json') == sample_result
+    assert generate_diff(sample_paths_json[0], sample_paths_json[1], 'stylish') == sample_result
 
 
 def test_simple_json2(sample_paths_json, sample_result2):
     """Check that json diff works."""
-    assert generate_diff(sample_paths_json[2], sample_paths_json[2], 'json') == sample_result2
+    assert generate_diff(sample_paths_json[2], sample_paths_json[2], 'stylish') == sample_result2
 
 
 def test_simple_yaml(sample_paths_yaml, sample_result):
     """Check that yaml diff works."""
-    assert generate_diff(sample_paths_yaml[0], sample_paths_yaml[1], 'json') == sample_result
+    assert generate_diff(sample_paths_yaml[0], sample_paths_yaml[1], 'stylish') == sample_result
 
 
 def test_simple_yaml2(sample_paths_yaml, sample_result2):
     """Check that yaml diff works."""
-    assert generate_diff(sample_paths_yaml[2], sample_paths_yaml[2], 'json') == sample_result2
+    assert generate_diff(sample_paths_yaml[2], sample_paths_yaml[2], 'stylish') == sample_result2
 
 
 def test_nested_json(sample_paths_json, sample_nested_result):
     """Check that json diff works."""
-    assert generate_diff(sample_paths_json[3], sample_paths_json[4], 'json') == sample_nested_result
+    assert generate_diff(sample_paths_json[3], sample_paths_json[4], 'stylish') == sample_nested_result
 
 
 def test_nested_yaml(sample_paths_yaml, sample_nested_result):
     """Check that yaml diff works."""
-    assert generate_diff(sample_paths_yaml[3], sample_paths_yaml[4], 'json') == sample_nested_result
+    assert generate_diff(sample_paths_yaml[3], sample_paths_yaml[4], 'stylish') == sample_nested_result
 
 
 def test_nested_json_plain(sample_paths_json, sample_nested_result_plain):
     """Check that json diff works in plain format."""
     assert generate_diff(sample_paths_json[3], sample_paths_json[4], 'plain') == sample_nested_result_plain
+
+
+def test_nested_json_json(sample_paths_json, sample_nested_result_json):
+    """Check that json diff works in valid json format."""
+    assert generate_diff(sample_paths_json[3], sample_paths_json[4], 'json') == sample_nested_result_json

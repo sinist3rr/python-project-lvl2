@@ -11,14 +11,17 @@
 
 ### asciinema
 
-**gendiff json**\
-[![gendiff-json](https://asciinema.org/a/u2NB0QMgdrHexiLZM2iKkfZ0G.svg)](https://asciinema.org/a/u2NB0QMgdrHexiLZM2iKkfZ0G)
+**gendiff basic json**\
+[![gendiff-basic](https://asciinema.org/a/7NRot3MEQJbtVZB34XrmMkJDC.svg)](https://asciinema.org/a/7NRot3MEQJbtVZB34XrmMkJDC)
 
-**gendiff yaml**\
-[![gendiff-yaml](https://asciinema.org/a/Ex2F4cCEzt098fCMRzVTwLm06.svg)](https://asciinema.org/a/Ex2F4cCEzt098fCMRzVTwLm06)
+**gendiff basic yaml**\
+[![gendiff-yaml](https://asciinema.org/a/x1cpqZ49w3mAUv9WERhAKaBxL.svg)](https://asciinema.org/a/x1cpqZ49w3mAUv9WERhAKaBxL)
 
 **gendiff nested json**\
-[![gendiff-nested-json](https://asciinema.org/a/dsqlqqmBECIrgnvVIiuQRZ0gt.svg)](https://asciinema.org/a/dsqlqqmBECIrgnvVIiuQRZ0gt)
+[![gendiff-nested-json](https://asciinema.org/a/C0Kp7SnwTuYLrgj2K0Cil3XEc.svg)](https://asciinema.org/a/C0Kp7SnwTuYLrgj2K0Cil3XEc)
 
 **gendiff plain format**\
-[![gendiff-plain-format](https://asciinema.org/a/N5gBbSzaJFW6gTHY80RPpeyDQ.svg)](https://asciinema.org/a/N5gBbSzaJFW6gTHY80RPpeyDQ)
+[![gendiff-plain-format](https://asciinema.org/a/gJ1gusyYTcV7woJfe6QwVOdur.svg)](https://asciinema.org/a/gJ1gusyYTcV7woJfe6QwVOdur)
+
+**gendiff json format**\
+[![gendiff-json-format](https://asciinema.org/a/PqYiWqUDYJbvKBjbY3MjEpuC9.svg)](https://asciinema.org/a/PqYiWqUDYJbvKBjbY3MjEpuC9)

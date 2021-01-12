@@ -7,7 +7,7 @@
 
 
 ### Hexlet tests and linter status:
-![Actions Status](/workflows/hexlet-check/badge.svg)
+![Actions Status](https://github.com/sinist3rr/python-project-lvl2/workflows/hexlet-check/badge.svg)
 
 ### asciinema
 

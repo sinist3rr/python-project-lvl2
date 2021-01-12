@@ -25,3 +25,5 @@
 
 **gendiff json format**\
 [![gendiff-json-format](https://asciinema.org/a/PqYiWqUDYJbvKBjbY3MjEpuC9.svg)](https://asciinema.org/a/PqYiWqUDYJbvKBjbY3MjEpuC9)
+
+### how to install package

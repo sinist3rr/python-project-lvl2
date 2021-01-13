@@ -41,4 +41,6 @@ def generate_diff(file1, file2, FORMAT='stylish'):
         final_result = plain_format(tree)
     elif FORMAT == 'json':
         final_result = json_format(tree)
+    else:
+        final_result = '{}}}'.format(stylish_format(tree))
     return final_result

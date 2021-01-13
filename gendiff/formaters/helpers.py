@@ -70,7 +70,7 @@ def set_sign(string, spaces, sign, name, value):
 def is_complex(value):
     if is_dict(value):
         return '[complex value]'
-    elif isinstance(int, value):
+    elif type(value) == int:
         return value
     elif value is True:
         return 'true'

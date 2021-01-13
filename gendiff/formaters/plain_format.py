@@ -48,4 +48,4 @@ def plain_format(diff_tree, result='', name=''):
                         is_complex(node['value'][0]),
                         is_complex(node['value'][1])
                         )
-    return result[:-1]
+    return result

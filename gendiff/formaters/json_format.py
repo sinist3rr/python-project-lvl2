@@ -1,8 +1,8 @@
 import json
 from gendiff.formaters.helpers import (
-                                        is_nested,
-                                        get_children,
-                                      )
+    is_nested,
+    get_children,
+)
 
 
 def json_prepare(diff_tree):

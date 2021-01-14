@@ -62,8 +62,8 @@ def set_sign(string, spaces, sign, name, value):
         string += '{}  }}\n'.format(spaces * ' ')
     else:
         string += '{}{} {}: {}\n'.format(
-                spaces * ' ', sign, name, transform(value)
-                )
+            spaces * ' ', sign, name, transform(value)
+        )
     return string
 
 

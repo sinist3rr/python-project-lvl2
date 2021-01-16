@@ -13,49 +13,49 @@ from gendiff import generate_diff
             'tests/fixtures/before.json',
             'tests/fixtures/after.json',
             'stylish',
-            'sample_result'
+            'diff_stylish'
         ),
         (
             'tests/fixtures/before2.json',
             'tests/fixtures/before2.json',
             'stylish',
-            'sample_result2'
+            'diff_stylish2'
         ),
         (
             'tests/fixtures/before.yml',
             'tests/fixtures/after.yml',
             'stylish',
-            'sample_result'
+            'diff_stylish'
         ),
         (
             'tests/fixtures/before2.yml',
             'tests/fixtures/before2.yml',
             'stylish',
-            'sample_result2'
+            'diff_stylish2'
         ),
         (
             'tests/fixtures/before_nested.json',
             'tests/fixtures/after_nested.json',
             'stylish',
-            'sample_nested_result'
+            'diff_nested_stylish'
         ),
         (
             'tests/fixtures/before_nested.yml',
             'tests/fixtures/after_nested.yml',
             'stylish',
-            'sample_nested_result'
+            'diff_nested_stylish'
         ),
         (
             'tests/fixtures/before_nested.json',
             'tests/fixtures/after_nested.json',
             'plain',
-            'sample_nested_result_plain'
+            'diff_nested_plain'
         ),
         (
             'tests/fixtures/before_nested.json',
             'tests/fixtures/after_nested.json',
             'json',
-            'sample_nested_result_json'
+            'diff_nested_json'
         )]
 )
 def test_gendiff(file_before, file_after, format, result):

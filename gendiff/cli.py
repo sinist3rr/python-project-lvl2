@@ -7,4 +7,4 @@ def prompt_args():
     parser.add_argument(dest='second_file')
     parser.add_argument('-f', '--format',
                         dest='FORMAT', help="set format of output")
-    return parser.parse_args()
+    return parser

@@ -1,5 +1,5 @@
 import json
-from gendiff.formaters.helpers import (
+from gendiff.diff_structure import (
     is_nested,
     get_children,
 )

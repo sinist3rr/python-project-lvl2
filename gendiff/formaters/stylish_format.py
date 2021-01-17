@@ -1,12 +1,45 @@
-from gendiff.formaters.helpers import (
+from gendiff.diff_structure import (
     is_nested,
     is_added,
     is_deleted,
     is_unchanged,
     is_changed,
-    get_children,
-    set_sign
+    get_children
 )
+
+
+def set_sign(string, spaces, sign, name, value):
+    if isinstance(value, dict):
+        string += '{}{} {}: {{\n'.format(spaces * ' ', sign, name)
+        string += nested_values(value, spaces + 6)
+        string += '{}  }}\n'.format(spaces * ' ')
+    else:
+        string += '{}{} {}: {}\n'.format(
+            spaces * ' ', sign, name, transform(value)
+        )
+    return string
+
+
+def nested_values(item, spaces, result=''):
+    for key in item:
+        if isinstance(item[key], dict):
+            result += '{}{}: {{\n'.format(spaces * ' ', key)
+            result = nested_values(item[key], spaces + 4, result)
+            result += '{}}}\n'.format(spaces * ' ')
+        else:
+            result += '{}{}: {}\n'.format(spaces * ' ', key, item[key])
+    return result
+
+
+def transform(item):
+    if item is True:
+        return 'true'
+    elif item is False:
+        return 'false'
+    elif item is None:
+        return 'null'
+    else:
+        return item
 
 
 def stylish_format(diff_tree, result='{\n', spaces=2):

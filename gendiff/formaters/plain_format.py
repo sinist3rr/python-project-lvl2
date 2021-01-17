@@ -1,11 +1,36 @@
-from gendiff.formaters.helpers import (
+from gendiff.diff_structure import (
     is_nested,
     is_added,
-    is_complex,
     is_deleted,
     is_changed,
     get_children
 )
+
+
+def is_complex(value):
+    if isinstance(value, dict):
+        return '[complex value]'
+    elif type(value) == int:
+        return value
+    elif value is True:
+        return 'true'
+    elif value is False:
+        return 'false'
+    elif value is None:
+        return 'null'
+    else:
+        return "'{}'".format(transform(value))
+
+
+def transform(item):
+    if item is True:
+        return 'true'
+    elif item is False:
+        return 'false'
+    elif item is None:
+        return 'null'
+    else:
+        return item
 
 
 def plain_format(diff_tree, result='', name=''):

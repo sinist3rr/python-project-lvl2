@@ -19,13 +19,12 @@ def diff_tree(d1, d2):
         elif d1[key] == d2[key]:
             temp['state'] = 'unchanged'
             temp['value'] = d1[key]
+        elif isinstance(d2[key], dict) and isinstance(d1[key], dict):
+            temp['state'] = 'nested'
+            temp['children'] = diff_tree(d1[key], d2[key])
         else:
-            if isinstance(d2[key], dict) and isinstance(d1[key], dict):
-                temp['state'] = 'nested'
-                temp['children'] = diff_tree(d1[key], d2[key])
-            else:
-                temp['state'] = 'changed'
-                temp['value'] = (d1[key], d2[key])
+            temp['state'] = 'changed'
+            temp['value'] = (d1[key], d2[key])
         tree.append(temp)
     return tree
 

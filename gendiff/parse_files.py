@@ -11,7 +11,7 @@ def parsing_file(filename):
     YAML_EXTENSIONS = ['.yml', '.yaml', '.YAML', '.YML']
 
     if not os.path.exists(filename):
-        print('File not found')
+        print('File not found.')
         sys.exit(1)
 
     _, ext = os.path.splitext(filename)

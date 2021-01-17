@@ -30,16 +30,22 @@ def diff_tree(d1, d2):
     return tree
 
 
-def generate_diff(file1, file2, FORMAT='stylish'):
+def generate_diff(file1, file2, format):
     file1_dict = parsing_file(file1)
     file2_dict = parsing_file(file2)
-    tree = diff_tree(file1_dict, file2_dict)
 
-    if FORMAT == 'stylish':
+    try:
+        tree = diff_tree(file1_dict, file2_dict)
+    except AttributeError:
+        print('Cannot make diff tree.')
+        print('File is not found or empty.')
+        return
+
+    if format == 'stylish':
         final_result = '{}}}'.format(stylish_format(tree))
-    elif FORMAT == 'plain':
+    elif format == 'plain':
         final_result = plain_format(tree)[:-1]
-    elif FORMAT == 'json':
+    elif format == 'json':
         final_result = json_format(tree)
     else:
         final_result = '{}}}'.format(stylish_format(tree))

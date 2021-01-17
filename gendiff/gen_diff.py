@@ -30,7 +30,7 @@ def diff_tree(d1, d2):
     return tree
 
 
-def generate_diff(file1, file2, format):
+def generate_diff(file1, file2, format='stylish'):
     file1_dict = parsing_file(file1)
     file2_dict = parsing_file(file2)
 

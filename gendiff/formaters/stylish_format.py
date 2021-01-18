@@ -39,7 +39,7 @@ def transform(item):
     elif item is None:
         return 'null'
     else:
-        return item
+        return str(item)
 
 
 def stylish_format(diff_tree, result='{\n', spaces=2):

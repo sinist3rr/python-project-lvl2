@@ -45,27 +45,19 @@ def transform(item):
 def stylish_format(diff_tree, result='{\n', spaces=2):
     diff_tree.sort(key=lambda x: x['name'])
     for node in diff_tree:
+        name = node.get('name')
+        value = node.get('value')
         if is_nested(node):
             result += '{}  {}: {{\n'.format(spaces * ' ', node['name'])
             result = stylish_format(get_children(node), result, spaces + 4)
             result += '{}  }}\n'.format(spaces * ' ')
         elif is_added(node):
-            result = set_sign(
-                result, spaces, '+', node.get('name'), node.get('value')
-            )
+            result = set_sign(result, spaces, '+', name, value)
         elif is_deleted(node):
-            result = set_sign(
-                result, spaces, '-', node.get('name'), node.get('value')
-            )
+            result = set_sign(result, spaces, '-', name, value)
         elif is_unchanged(node):
-            result = set_sign(
-                result, spaces, ' ', node.get('name'), node.get('value')
-            )
+            result = set_sign(result, spaces, ' ', name, value)
         elif is_changed(node):
-            result = set_sign(
-                result, spaces, '-', node.get('name'), node.get('value')[0]
-            )
-            result = set_sign(
-                result, spaces, '+', node.get('name'), node.get('value')[1]
-            )
+            result = set_sign(result, spaces, '-', name, value[0])
+            result = set_sign(result, spaces, '+', name, value[1])
     return result

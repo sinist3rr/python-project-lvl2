@@ -1,31 +1,41 @@
+STATE = 'state'
+VALUE = 'value'
+CHILDREN = 'children'
+NESTED = 'nested'
+ADDED = 'added'
+DELETED = 'deleted'
+CHANGED = 'changed'
+UNCHANGED = 'unchanged'
+
+
 def is_nested(node):
     '''Check is node a nested.'''
-    return node.get('state') == 'nested'
+    return node.get(STATE) == NESTED
 
 
 def is_added(node):
     '''Check is node a added.'''
-    return node.get('state') == 'added'
+    return node.get(STATE) == ADDED
 
 
 def is_deleted(node):
     '''Check is node a deleted.'''
-    return node.get('state') == 'deleted'
+    return node.get(STATE) == DELETED
 
 
 def is_changed(node):
     '''Check is node a changed.'''
-    return node.get('state') == 'changed'
+    return node.get(STATE) == CHANGED
 
 
 def is_unchanged(node):
     '''Check is node a unchanged.'''
-    return node.get('state') == 'unchanged'
+    return node.get(STATE) == UNCHANGED
 
 
 def get_children(nested):
     '''Return children of node.'''
-    return nested.get('children')
+    return nested.get(CHILDREN)
 
 
 def diff_tree(d1, d2):
@@ -35,19 +45,19 @@ def diff_tree(d1, d2):
         temp = {}
         temp['name'] = key
         if key not in d1:
-            temp['state'] = 'added'
-            temp['value'] = d2[key]
+            temp[STATE] = ADDED
+            temp[VALUE] = d2[key]
         elif key not in d2:
-            temp['state'] = 'deleted'
-            temp['value'] = d1[key]
+            temp[STATE] = DELETED
+            temp[VALUE] = d1[key]
         elif d1[key] == d2[key]:
-            temp['state'] = 'unchanged'
-            temp['value'] = d1[key]
+            temp[STATE] = UNCHANGED
+            temp[VALUE] = d1[key]
         elif isinstance(d2[key], dict) and isinstance(d1[key], dict):
-            temp['state'] = 'nested'
-            temp['children'] = diff_tree(d1[key], d2[key])
+            temp[STATE] = NESTED
+            temp[CHILDREN] = diff_tree(d1[key], d2[key])
         else:
-            temp['state'] = 'changed'
-            temp['value'] = (d1[key], d2[key])
+            temp[STATE] = CHANGED
+            temp[VALUE] = (d1[key], d2[key])
         tree.append(temp)
     return tree

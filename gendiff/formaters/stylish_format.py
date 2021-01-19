@@ -13,6 +13,17 @@ REGULAR_SPACES = 4
 START_SPACES = 2
 
 
+def transform(item):
+    if item is True:
+        return 'true'
+    elif item is False:
+        return 'false'
+    elif item is None:
+        return 'null'
+    else:
+        return str(item)
+
+
 def set_sign(string, spaces, sign, name, value):
     if isinstance(value, dict):
         string += '{}{} {}: {{\n'.format(spaces * ' ', sign, name)
@@ -36,24 +47,13 @@ def nested_values(item, spaces, result=''):
     return result
 
 
-def transform(item):
-    if item is True:
-        return 'true'
-    elif item is False:
-        return 'false'
-    elif item is None:
-        return 'null'
-    else:
-        return str(item)
-
-
 def stylish_format(diff_tree, result='{\n', spaces=START_SPACES):
     diff_tree.sort(key=lambda x: x['name'])
     for node in diff_tree:
         name = node.get('name')
         value = node.get('value')
         if is_nested(node):
-            result += '{}  {}: {{\n'.format(spaces * ' ', node['name'])
+            result += '{}  {}: {{\n'.format(spaces * ' ', name)
             result = stylish_format(get_children(node), result, spaces + REGULAR_SPACES)
             result += '{}  }}\n'.format(spaces * ' ')
         elif is_added(node):

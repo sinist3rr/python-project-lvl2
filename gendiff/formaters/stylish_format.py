@@ -8,7 +8,6 @@ from gendiff.diff_structure import (
 )
 
 
-NESTED_SPACES = 6
 REGULAR_SPACES = 4
 START_SPACES = 2
 
@@ -24,38 +23,15 @@ def transform(item):
         return str(item)
 
 
-def set_sign(string, spaces, sign, key, value):
-    if isinstance(value, dict):
-        string += '{}{} {}: {{\n'.format(spaces * ' ', sign, key)
-        string += nested_values(value, spaces + NESTED_SPACES)
-        string += '{}  }}\n'.format(spaces * ' ')
-    else:
-        string += '{}{} {}: {}\n'.format(
-            spaces * ' ', sign, key, transform(value)
-        )
-    return string
-
-
-def nested_values(item, spaces, result=''):
-    for key in item:
-        value = item[key]
-        if isinstance(value, dict):
-            result += '{}{}: {{\n'.format(spaces * ' ', key)
-            result = nested_values(value, spaces + REGULAR_SPACES, result)
-            result += '{}}}\n'.format(spaces * ' ')
-        else:
-            result += '{}{}: {}\n'.format(spaces * ' ', key, value)
-    return result
-
-
-def stylish_format(diff_tree, result='{\n', spaces=START_SPACES):
+def stylish_format(diff_tree, spaces=START_SPACES, result='{\n'):
+    sign = ' '
     diff_tree.sort(key=lambda x: x['name'])
     for node in diff_tree:
         name = node.get('name')
         value = node.get('value')
         if is_nested(node):
-            result += '{}{} {}: {{\n'.format(spaces * ' ', ' ', name)
-            result = stylish_format(get_children(node), result, spaces + REGULAR_SPACES)
+            result += '{}{} {}: {{\n'.format(spaces * ' ', sign, name)
+            result = stylish_format(get_children(node), spaces + REGULAR_SPACES, result)
             result += '{}  }}\n'.format(spaces * ' ')
         elif is_added(node):
             result = set_sign(result, spaces, '+', name, value)
@@ -66,4 +42,28 @@ def stylish_format(diff_tree, result='{\n', spaces=START_SPACES):
         elif is_changed(node):
             result = set_sign(result, spaces, '-', name, value[0])
             result = set_sign(result, spaces, '+', name, value[1])
+    return result
+
+
+def set_sign(result, spaces, sign, name, value):
+    if isinstance(value, dict):
+        result += '{}{} {}: {{\n'.format(spaces * ' ', sign, name)
+        result += nested_values(spaces + REGULAR_SPACES, ' ', value)
+        result += '{}  }}\n'.format(spaces * ' ')
+    else:
+        result += '{}{} {}: {}\n'.format(
+            spaces * ' ', sign, name, transform(value)
+        )
+    return result
+
+
+def nested_values(spaces, sign, item, result=''):
+    for name in item:
+        value = item[name]
+        if isinstance(value, dict):
+            result += '{}{} {}: {{\n'.format(spaces * ' ', sign, name)
+            result = nested_values(spaces + REGULAR_SPACES, ' ', value, result)
+            result += '{}  }}\n'.format(spaces * ' ')
+        else:
+            result += '{}{}: {}\n'.format((spaces + 2) * ' ', name, value)
     return result

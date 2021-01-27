@@ -10,6 +10,9 @@ from gendiff.diff_structure import (
 
 REGULAR_SPACES = 4
 START_SPACES = 2
+OPEN_BLOCK = '{}{} {}: {{\n'
+VALUE_BLOCK = '{}{} {}: {}\n'
+CLOSE_BLOCK = '{}  }}\n'
 
 
 def stylish_format(diff_tree, spaces=START_SPACES, result='{\n'):
@@ -19,9 +22,9 @@ def stylish_format(diff_tree, spaces=START_SPACES, result='{\n'):
         name = node.get('name')
         value = node.get('value')
         if is_nested(node):
-            result += '{}{} {}: {{\n'.format(spaces * ' ', sign, name)
+            result += OPEN_BLOCK.format(spaces * ' ', sign, name)
             result = stylish_format(get_children(node), spaces + REGULAR_SPACES, result)
-            result += '{}  }}\n'.format(spaces * ' ')
+            result += CLOSE_BLOCK.format(spaces * ' ')
         elif is_added(node):
             result = set_sign(result, spaces, '+', name, value)
         elif is_deleted(node):
@@ -36,11 +39,11 @@ def stylish_format(diff_tree, spaces=START_SPACES, result='{\n'):
 
 def set_sign(result, spaces, sign, name, value):
     if isinstance(value, dict):
-        result += '{}{} {}: {{\n'.format(spaces * ' ', sign, name)
+        result += OPEN_BLOCK.format(spaces * ' ', sign, name)
         result += nested_values(spaces + REGULAR_SPACES, ' ', value)
-        result += '{}  }}\n'.format(spaces * ' ')
+        result += CLOSE_BLOCK.format(spaces * ' ')
     else:
-        result += '{}{} {}: {}\n'.format(
+        result += VALUE_BLOCK.format(
             spaces * ' ', sign, name, transform(value)
         )
     return result
@@ -50,11 +53,11 @@ def nested_values(spaces, sign, item, result=''):
     for name in item:
         value = item[name]
         if isinstance(value, dict):
-            result += '{}{} {}: {{\n'.format(spaces * ' ', sign, name)
+            result += OPEN_BLOCK.format(spaces * ' ', sign, name)
             result = nested_values(spaces + REGULAR_SPACES, ' ', value, result)
-            result += '{}  }}\n'.format(spaces * ' ')
+            result += CLOSE_BLOCK.format(spaces * ' ')
         else:
-            result += '{}{}: {}\n'.format((spaces + 2) * ' ', name, value)
+            result += VALUE_BLOCK.format(spaces * ' ', sign, name, value)
     return result
 
 

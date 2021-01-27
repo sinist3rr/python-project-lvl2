@@ -12,17 +12,6 @@ REGULAR_SPACES = 4
 START_SPACES = 2
 
 
-def transform(item):
-    if item is True:
-        return 'true'
-    elif item is False:
-        return 'false'
-    elif item is None:
-        return 'null'
-    else:
-        return str(item)
-
-
 def stylish_format(diff_tree, spaces=START_SPACES, result='{\n'):
     sign = ' '
     diff_tree.sort(key=lambda x: x['name'])
@@ -67,3 +56,14 @@ def nested_values(spaces, sign, item, result=''):
         else:
             result += '{}{}: {}\n'.format((spaces + 2) * ' ', name, value)
     return result
+
+
+def transform(item):
+    if item is True:
+        return 'true'
+    elif item is False:
+        return 'false'
+    elif item is None:
+        return 'null'
+    else:
+        return str(item)

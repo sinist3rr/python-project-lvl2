@@ -22,9 +22,9 @@ def stylish_format(diff_tree, spaces=START_SPACES, result='{\n'):
         name = node.get('name')
         value = node.get('value')
         if is_nested(node):
-            result += OPEN_BLOCK.format(spaces * ' ', sign, name)
+            result += OPEN_BLOCK.format(mult_space(spaces), sign, name)
             result = stylish_format(get_children(node), spaces + REGULAR_SPACES, result)
-            result += CLOSE_BLOCK.format(spaces * ' ')
+            result += CLOSE_BLOCK.format(mult_space(spaces))
         elif is_added(node):
             result = set_sign(result, spaces, '+', name, value)
         elif is_deleted(node):
@@ -39,12 +39,12 @@ def stylish_format(diff_tree, spaces=START_SPACES, result='{\n'):
 
 def set_sign(result, spaces, sign, name, value):
     if isinstance(value, dict):
-        result += OPEN_BLOCK.format(spaces * ' ', sign, name)
+        result += OPEN_BLOCK.format(mult_space(spaces), sign, name)
         result += nested_values(spaces + REGULAR_SPACES, ' ', value)
-        result += CLOSE_BLOCK.format(spaces * ' ')
+        result += CLOSE_BLOCK.format(mult_space(spaces))
     else:
         result += VALUE_BLOCK.format(
-            spaces * ' ', sign, name, transform(value)
+            mult_space(spaces), sign, name, transform(value)
         )
     return result
 
@@ -53,12 +53,16 @@ def nested_values(spaces, sign, item, result=''):
     for name in item:
         value = item[name]
         if isinstance(value, dict):
-            result += OPEN_BLOCK.format(spaces * ' ', sign, name)
+            result += OPEN_BLOCK.format(mult_space(spaces), sign, name)
             result = nested_values(spaces + REGULAR_SPACES, ' ', value, result)
-            result += CLOSE_BLOCK.format(spaces * ' ')
+            result += CLOSE_BLOCK.format(mult_space(spaces))
         else:
-            result += VALUE_BLOCK.format(spaces * ' ', sign, name, value)
+            result += VALUE_BLOCK.format(mult_space(spaces), sign, name, value)
     return result
+
+
+def mult_space(x):
+    return x * ' '
 
 
 def transform(item):

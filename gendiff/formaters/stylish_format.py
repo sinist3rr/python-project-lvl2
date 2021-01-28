@@ -13,6 +13,9 @@ START_SPACES = 2
 OPEN_BLOCK = '{}{} {}: {{\n'
 VALUE_BLOCK = '{}{} {}: {}\n'
 CLOSE_BLOCK = '{}  }}\n'
+ADDED = '+'
+REMOVED = '-'
+STALE = ' '
 
 
 def stylish_format(diff_tree, spaces=START_SPACES, result='{\n'):
@@ -26,21 +29,22 @@ def stylish_format(diff_tree, spaces=START_SPACES, result='{\n'):
             result = stylish_format(get_children(node), spaces + REGULAR_SPACES, result)
             result += CLOSE_BLOCK.format(mult_space(spaces))
         elif is_added(node):
-            result = set_sign(result, spaces, '+', name, value)
+            result = set_sign(result, spaces, ADDED, name, value)
         elif is_deleted(node):
-            result = set_sign(result, spaces, '-', name, value)
+            result = set_sign(result, spaces, REMOVED, name, value)
         elif is_unchanged(node):
-            result = set_sign(result, spaces, ' ', name, value)
+            result = set_sign(result, spaces, STALE, name, value)
         elif is_changed(node):
-            result = set_sign(result, spaces, '-', name, value[0])
-            result = set_sign(result, spaces, '+', name, value[1])
+            result = set_sign(result, spaces, REMOVED, name, value[0])
+            result = set_sign(result, spaces, ADDED, name, value[1])
     return result
 
 
 def set_sign(result, spaces, sign, name, value):
     if isinstance(value, dict):
         result += OPEN_BLOCK.format(mult_space(spaces), sign, name)
-        result += nested_values(spaces + REGULAR_SPACES, ' ', value)
+        for key, nested in value.items():
+            result = set_sign(result, spaces + REGULAR_SPACES, ' ', key, nested)
         result += CLOSE_BLOCK.format(mult_space(spaces))
     else:
         result += VALUE_BLOCK.format(
@@ -49,20 +53,8 @@ def set_sign(result, spaces, sign, name, value):
     return result
 
 
-def nested_values(spaces, sign, item, result=''):
-    for name in item:
-        value = item[name]
-        if isinstance(value, dict):
-            result += OPEN_BLOCK.format(mult_space(spaces), sign, name)
-            result = nested_values(spaces + REGULAR_SPACES, ' ', value, result)
-            result += CLOSE_BLOCK.format(mult_space(spaces))
-        else:
-            result += VALUE_BLOCK.format(mult_space(spaces), sign, name, value)
-    return result
-
-
-def mult_space(x):
-    return x * ' '
+def mult_space(count):
+    return ' ' * count
 
 
 def transform(item):

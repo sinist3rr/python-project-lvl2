@@ -7,19 +7,8 @@ from gendiff.diff_structure import (
 )
 
 
-def is_complex(value):
-    if isinstance(value, dict):
-        return '[complex value]'
-    elif value is True:
-        return 'true'
-    elif value is False:
-        return 'false'
-    elif value is None:
-        return 'null'
-    elif isinstance(value, str):
-        return "'{}'".format(value)
-    else:
-        return str(value)
+def plain_format_wrapper(diff_tree):
+    return plain_format(diff_tree)
 
 
 def plain_format(diff_tree, result='', name=''):
@@ -52,3 +41,18 @@ def plain_format(diff_tree, result='', name=''):
                 f4=is_complex(node['value'][1])
             )
     return result
+
+
+def is_complex(value):
+    if isinstance(value, dict):
+        return '[complex value]'
+    elif value is True:
+        return 'true'
+    elif value is False:
+        return 'false'
+    elif value is None:
+        return 'null'
+    elif isinstance(value, str):
+        return "'{}'".format(value)
+    else:
+        return str(value)

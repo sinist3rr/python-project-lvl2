@@ -8,7 +8,7 @@ from gendiff.diff_structure import (
 
 
 def plain_format_wrapper(diff_tree):
-    return plain_format(diff_tree)
+    return plain_format(diff_tree)[:-1]
 
 
 def plain_format(diff_tree, result='', name=''):

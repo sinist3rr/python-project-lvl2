@@ -7,6 +7,6 @@ def select_formater(format, tree):
     if format == 'stylish':
         return '{}}}'.format(stylish_format_wrapper(tree))
     elif format == 'plain':
-        return plain_format_wrapper(tree)[:-1]
+        return plain_format_wrapper(tree)
     elif format == 'json':
         return json_format(tree)

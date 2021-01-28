@@ -40,7 +40,7 @@ def stylish_format(diff_tree, spaces=START_SPACES, result='{\n'):
 def set_sign(result, spaces, sign, name, value):
     if isinstance(value, dict):
         result += OPEN_BLOCK.format(mult_space(spaces), sign, name)
-        for key, nested in value:
+        for key, nested in value.items():
             result = set_sign(result, spaces + REGULAR_SPACES, ' ', key, nested)
         result += CLOSE_BLOCK.format(mult_space(spaces))
     else:

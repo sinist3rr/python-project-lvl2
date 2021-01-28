@@ -39,11 +39,11 @@ def stylish_format(diff_tree, spaces=START_SPACES, result='{\n'):
 
 def set_sign(result, spaces, sign, name, value):
     if isinstance(value, dict):
+        result += OPEN_BLOCK.format(mult_space(spaces), sign, name)
         for i in value:
             nested = value[i]
-            result += OPEN_BLOCK.format(mult_space(spaces), sign, name)
             result = set_sign(result, spaces + REGULAR_SPACES, ' ', i, nested)
-            result += CLOSE_BLOCK.format(mult_space(spaces))
+        result += CLOSE_BLOCK.format(mult_space(spaces))
     else:
         result += VALUE_BLOCK.format(
             mult_space(spaces), sign, name, transform(value)

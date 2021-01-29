@@ -19,19 +19,19 @@ STALE = ' '
 
 
 def stylish_format_wrapper(diff_tree):
-    return '{}}}'.format(stylish_format(diff_tree))
+    return '{}}}'.format(''.join(stylish_format(diff_tree, START_SPACES, ['{\n'])))
 
 
-def stylish_format(diff_tree, spaces=START_SPACES, result='{\n'):
+def stylish_format(diff_tree, spaces, result):
     sign = ' '
     diff_tree.sort(key=lambda x: x['name'])
     for node in diff_tree:
         name = node.get('name')
         value = node.get('value')
         if is_nested(node):
-            result += OPEN_BLOCK.format(mult_space(spaces), sign, name)
+            result.append(OPEN_BLOCK.format(mult_space(spaces), sign, name))
             result = stylish_format(get_children(node), spaces + REGULAR_SPACES, result)
-            result += CLOSE_BLOCK.format(mult_space(spaces))
+            result.append(CLOSE_BLOCK.format(mult_space(spaces)))
         elif is_added(node):
             result = set_sign(result, spaces, ADDED, name, value)
         elif is_deleted(node):
@@ -46,14 +46,14 @@ def stylish_format(diff_tree, spaces=START_SPACES, result='{\n'):
 
 def set_sign(result, spaces, sign, name, value):
     if isinstance(value, dict):
-        result += OPEN_BLOCK.format(mult_space(spaces), sign, name)
+        result.append(OPEN_BLOCK.format(mult_space(spaces), sign, name))
         for key, nested in value.items():
             result = set_sign(result, spaces + REGULAR_SPACES, ' ', key, nested)
-        result += CLOSE_BLOCK.format(mult_space(spaces))
+        result.append(CLOSE_BLOCK.format(mult_space(spaces)))
     else:
-        result += VALUE_BLOCK.format(
+        result.append(VALUE_BLOCK.format(
             mult_space(spaces), sign, name, transform(value)
-        )
+        ))
     return result
 
 

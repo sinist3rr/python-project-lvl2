@@ -8,10 +8,10 @@ from gendiff.diff_structure import (
 
 
 def plain_format_wrapper(diff_tree):
-    return ''.join(plain_format(diff_tree))[:-1]
+    return ''.join(plain_format(diff_tree, []))[:-1]
 
 
-def plain_format(diff_tree, result=[], name=''):
+def plain_format(diff_tree, result, name=''):
     diff_tree.sort(key=lambda x: x['name'])
     if not name:
         composite_key = ''

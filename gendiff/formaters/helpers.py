@@ -5,7 +5,7 @@ from gendiff.formaters.json_format import json_format
 
 def select_formater(format, tree):
     if format == 'stylish':
-        return '{}}}'.format(stylish_format_wrapper(tree))
+        return stylish_format_wrapper(tree)
     elif format == 'plain':
         return plain_format_wrapper(tree)
     elif format == 'json':

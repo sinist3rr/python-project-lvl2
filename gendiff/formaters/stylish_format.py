@@ -19,7 +19,7 @@ STALE = ' '
 
 
 def stylish_format_wrapper(diff_tree):
-    return stylish_format(diff_tree)
+    return '{}}}'.format(stylish_format(diff_tree))
 
 
 def stylish_format(diff_tree, spaces=START_SPACES, result='{\n'):

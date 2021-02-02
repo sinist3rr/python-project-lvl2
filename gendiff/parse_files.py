@@ -7,10 +7,6 @@ import sys
 
 
 def parsing_file(filename):
-    if not os.path.exists(filename):
-        print('File not found.')
-        sys.exit(1)
-
     _, ext = os.path.splitext(filename)
     try:
         if ext.lower() == '.json':
@@ -21,4 +17,7 @@ def parsing_file(filename):
                 return yaml.load(ymlfile, Loader=yaml.FullLoader)
     except (JSONDecodeError, ScannerError):
         print("Invalid file type.")
+        sys.exit(1)
+    except IOError:
+        print("File is not available.")
         sys.exit(1)

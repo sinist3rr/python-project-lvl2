@@ -9,7 +9,7 @@ def json_prepare(diff_tree):
     diff_tree.sort(key=lambda x: x['name'])
     for node in diff_tree:
         if is_nested(node):
-            json_format(get_children(node))
+            json_prepare(get_children(node))
     return diff_tree
 
 

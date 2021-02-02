@@ -7,8 +7,6 @@ import sys
 
 
 def parsing_file(filename):
-    YAML_EXTENSIONS = ('.yml', '.yaml')
-
     if not os.path.exists(filename):
         print('File not found.')
         sys.exit(1)
@@ -18,7 +16,7 @@ def parsing_file(filename):
         if ext.lower() == '.json':
             with open(filename, 'r') as jsonfile:
                 return json.load(jsonfile)
-        if ext.lower() in YAML_EXTENSIONS:
+        if ext.lower() in ('.yml', '.yaml'):
             with open(filename) as ymlfile:
                 return yaml.load(ymlfile, Loader=yaml.FullLoader)
     except (JSONDecodeError, ScannerError):

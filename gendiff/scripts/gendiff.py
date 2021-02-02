@@ -6,7 +6,11 @@ from gendiff.cli import prompt_args
 
 def main():
     args = prompt_args().parse_args()
-    print(generate_diff(args.first_file, args.second_file, args.FORMAT))
+
+    try:
+        print(generate_diff(args.first_file, args.second_file, args.FORMAT))
+    except ValueError as error:
+        print(error)
 
 
 if __name__ == '__main__':

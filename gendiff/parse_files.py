@@ -3,7 +3,6 @@ import yaml
 from yaml.scanner import ScannerError
 from json import JSONDecodeError
 import os
-import sys
 
 
 def parsing_file(filename):
@@ -15,8 +14,6 @@ def parsing_file(filename):
             if ext.lower() in ('.yml', '.yaml'):
                 return yaml.load(file, Loader=yaml.FullLoader)
     except (JSONDecodeError, ScannerError):
-        print("Invalid file type.")
-        sys.exit(1)
+        raise ValueError("Invalid file type.")
     except IOError:
-        print("File is not available.")
-        sys.exit(1)
+        raise ValueError("File is not available.")

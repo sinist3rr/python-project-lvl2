@@ -8,10 +8,12 @@ PLAIN_STYLE = 'plain'
 JSON_STYLE = 'json'
 
 
-def select_formater(format, tree):
-    if format == STYLISH_STYLE:
+def select_formater(format_value, tree):
+    if format_value == STYLISH_STYLE:
         return stylish_format_wrapper(tree)
-    elif format == PLAIN_STYLE:
+    elif format_value == PLAIN_STYLE:
         return plain_format_wrapper(tree)
-    elif format == JSON_STYLE:
+    elif format_value == JSON_STYLE:
         return json_format(tree)
+    else:
+        raise ValueError("Invalid format {}.".format(format_value))

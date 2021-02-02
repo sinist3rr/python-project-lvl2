@@ -9,12 +9,11 @@ import sys
 def parsing_file(filename):
     _, ext = os.path.splitext(filename)
     try:
-        if ext.lower() == '.json':
-            with open(filename, 'r') as jsonfile:
-                return json.load(jsonfile)
-        if ext.lower() in ('.yml', '.yaml'):
-            with open(filename) as ymlfile:
-                return yaml.load(ymlfile, Loader=yaml.FullLoader)
+        with open(filename, 'r') as file:
+            if ext.lower() == '.json':
+                return json.load(file)
+            if ext.lower() in ('.yml', '.yaml'):
+                return yaml.load(file, Loader=yaml.FullLoader)
     except (JSONDecodeError, ScannerError):
         print("Invalid file type.")
         sys.exit(1)

@@ -1,4 +1,5 @@
 import json
+import copy
 from gendiff.diff_structure import (
     is_nested,
     get_children,
@@ -13,5 +14,6 @@ def json_prepare(diff_tree):
     return diff_tree
 
 
-def json_format(sorted_tree):
-    return json.dumps(json_prepare(sorted_tree))
+def json_format(diff_tree):
+    new_structure = copy.deepcopy(diff_tree)
+    return json.dumps(json_prepare(new_structure))

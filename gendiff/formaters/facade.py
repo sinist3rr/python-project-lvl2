@@ -1,6 +1,6 @@
-from gendiff.formaters.stylish_format import stylish_format_wrapper
-from gendiff.formaters.plain_format import plain_format_wrapper
-from gendiff.formaters.json_format import json_format
+from gendiff.formaters.stylish import stylish_format_wrapper
+from gendiff.formaters.plain import plain_format_wrapper
+from gendiff.formaters.json import json_format
 
 
 STYLISH_STYLE = 'stylish'

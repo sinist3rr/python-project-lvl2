@@ -29,7 +29,7 @@ def _plain_format(diff_tree, result, name=''):
             )
         elif is_added(node):
             result.append("Property '{}{}' was added with value: {}\n".format(
-                composite_key, key, is_complex(node['value'])
+                composite_key, key, format_plain_value(node['value'])
             ))
         elif is_deleted(node):
             result.append("Property '{}{}' was removed\n".format(
@@ -39,13 +39,13 @@ def _plain_format(diff_tree, result, name=''):
             result.append("Property '{}{}' was updated. From {} to {}\n".format(
                 composite_key,
                 key,
-                is_complex(node['value'][0]),
-                is_complex(node['value'][1])
+                format_plain_value(node['value'][0]),
+                format_plain_value(node['value'][1])
             ))
     return result
 
 
-def is_complex(value):
+def format_plain_value(value):
     if isinstance(value, dict):
         return '[complex value]'
     elif value is True:

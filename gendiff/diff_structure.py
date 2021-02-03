@@ -38,26 +38,26 @@ def get_children(nested):
     return nested.get(CHILDREN)
 
 
-def diff_tree(d1, d2):
-    keys = d1.keys() | d2.keys()
+def create_diff_tree(before_dict, after_dict):
+    keys = before_dict.keys() | after_dict.keys()
     tree = []
     for key in keys:
         temp = {}
         temp['name'] = key
-        if key not in d1:
+        if key not in before_dict:
             temp[STATE] = ADDED
-            temp[VALUE] = d2[key]
-        elif key not in d2:
+            temp[VALUE] = after_dict[key]
+        elif key not in after_dict:
             temp[STATE] = DELETED
-            temp[VALUE] = d1[key]
-        elif d1[key] == d2[key]:
+            temp[VALUE] = before_dict[key]
+        elif before_dict[key] == after_dict[key]:
             temp[STATE] = UNCHANGED
-            temp[VALUE] = d1[key]
-        elif isinstance(d2[key], dict) and isinstance(d1[key], dict):
+            temp[VALUE] = before_dict[key]
+        elif isinstance(after_dict[key], dict) and isinstance(before_dict[key], dict):
             temp[STATE] = NESTED
-            temp[CHILDREN] = diff_tree(d1[key], d2[key])
+            temp[CHILDREN] = create_diff_tree(before_dict[key], after_dict[key])
         else:
             temp[STATE] = CHANGED
-            temp[VALUE] = (d1[key], d2[key])
+            temp[VALUE] = (before_dict[key], after_dict[key])
         tree.append(temp)
     return tree

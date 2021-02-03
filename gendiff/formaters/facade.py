@@ -1,5 +1,5 @@
 from gendiff.formaters.stylish import stylish_format_wrapper
-from gendiff.formaters.plain import plain_format_wrapper
+from gendiff.formaters.plain import plain_format
 from gendiff.formaters.json import json_format
 
 
@@ -12,7 +12,7 @@ def format_diff_tree(format_value, tree):
     if format_value == STYLISH_STYLE:
         return stylish_format_wrapper(tree)
     elif format_value == PLAIN_STYLE:
-        return plain_format_wrapper(tree)
+        return plain_format(tree)
     elif format_value == JSON_STYLE:
         return json_format(tree)
     else:

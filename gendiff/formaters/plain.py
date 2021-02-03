@@ -8,11 +8,11 @@ from gendiff.diff_structure import (
 )
 
 
-def plain_format_wrapper(diff_tree):
-    return ''.join(plain_format(diff_tree, []))[:-1]
+def plain_format(diff_tree):
+    return ''.join(_plain_format(diff_tree, []))[:-1]
 
 
-def plain_format(diff_tree, result, name=''):
+def _plain_format(diff_tree, result, name=''):
     new_structure = copy.deepcopy(diff_tree)
     new_structure.sort(key=lambda x: x['name'])
     if not name:
@@ -22,7 +22,7 @@ def plain_format(diff_tree, result, name=''):
     for node in new_structure:
         key = node['name']
         if is_nested(node):
-            result = plain_format(
+            result = _plain_format(
                 get_children(node),
                 result,
                 "{}{}".format(composite_key, key)

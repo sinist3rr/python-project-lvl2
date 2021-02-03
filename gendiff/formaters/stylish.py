@@ -54,7 +54,7 @@ def set_sign(result, spaces, sign, name, value):
         result.append(CLOSE_BLOCK.format(calculate_indentation(spaces)))
     else:
         result.append(VALUE_BLOCK.format(
-            calculate_indentation(spaces), sign, name, transform(value)
+            calculate_indentation(spaces), sign, name, format_stylish_value(value)
         ))
     return result
 
@@ -63,12 +63,12 @@ def calculate_indentation(count):
     return ' ' * count
 
 
-def transform(item):
-    if item is True:
+def format_stylish_value(value):
+    if value is True:
         return 'true'
-    elif item is False:
+    elif value is False:
         return 'false'
-    elif item is None:
+    elif value is None:
         return 'null'
     else:
-        return str(item)
+        return str(value)

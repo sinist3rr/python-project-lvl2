@@ -31,9 +31,9 @@ def _stylish_format(diff_tree, spaces, result):
         name = node.get('name')
         value = node.get('value')
         if is_nested(node):
-            result.append(OPEN_BLOCK.format(mult_space(spaces), sign, name))
+            result.append(OPEN_BLOCK.format(calculate_indentation(spaces), sign, name))
             result = _stylish_format(get_children(node), spaces + REGULAR_SPACES, result)
-            result.append(CLOSE_BLOCK.format(mult_space(spaces)))
+            result.append(CLOSE_BLOCK.format(calculate_indentation(spaces)))
         elif is_added(node):
             result = set_sign(result, spaces, ADDED, name, value)
         elif is_deleted(node):
@@ -48,18 +48,18 @@ def _stylish_format(diff_tree, spaces, result):
 
 def set_sign(result, spaces, sign, name, value):
     if isinstance(value, dict):
-        result.append(OPEN_BLOCK.format(mult_space(spaces), sign, name))
+        result.append(OPEN_BLOCK.format(calculate_indentation(spaces), sign, name))
         for key, nested in value.items():
             result = set_sign(result, spaces + REGULAR_SPACES, ' ', key, nested)
-        result.append(CLOSE_BLOCK.format(mult_space(spaces)))
+        result.append(CLOSE_BLOCK.format(calculate_indentation(spaces)))
     else:
         result.append(VALUE_BLOCK.format(
-            mult_space(spaces), sign, name, transform(value)
+            calculate_indentation(spaces), sign, name, transform(value)
         ))
     return result
 
 
-def mult_space(count):
+def calculate_indentation(count):
     return ' ' * count
 
 

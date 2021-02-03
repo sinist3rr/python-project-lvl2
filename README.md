@@ -18,6 +18,8 @@ $ cd python-project-lvl2
 $ python -m pip install --upgrade pip
 $ pip install poetry
 $ make install
+$ make build
+$ pip install --user dist/hexlet_code-0.3.20-py3-none-any.whl
 ```
 
 ### asciinema

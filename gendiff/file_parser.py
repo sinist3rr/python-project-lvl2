@@ -5,7 +5,7 @@ from json import JSONDecodeError
 import os
 
 
-def parsing_file(filename):
+def parse_file(filename):
     _, ext = os.path.splitext(filename)
     try:
         with open(filename, 'r') as file:

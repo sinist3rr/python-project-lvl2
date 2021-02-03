@@ -1,5 +1,5 @@
 import argparse
-from gendiff.formaters.helpers import STYLISH_STYLE, PLAIN_STYLE, JSON_STYLE
+from gendiff.formaters import STYLISH_STYLE, PLAIN_STYLE, JSON_STYLE
 
 
 def prompt_args():

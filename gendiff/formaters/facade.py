@@ -8,7 +8,7 @@ PLAIN_STYLE = 'plain'
 JSON_STYLE = 'json'
 
 
-def select_formater(format_value, tree):
+def format_diff_tree(format_value, tree):
     if format_value == STYLISH_STYLE:
         return stylish_format_wrapper(tree)
     elif format_value == PLAIN_STYLE:

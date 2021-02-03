@@ -9,6 +9,17 @@
 ### Hexlet tests and linter status:
 ![Actions Status](https://github.com/sinist3rr/python-project-lvl2/workflows/hexlet-check/badge.svg)
 
+
+### how to install package
+Use the following commands:
+```
+$ git clone https://github.com/sinist3rr/python-project-lvl2.git
+$ cd python-project-lvl2
+$ python -m pip install --upgrade pip
+$ pip install poetry
+$ make install
+```
+
 ### asciinema
 
 **gendiff basic json**\
@@ -25,10 +36,4 @@
 
 **gendiff json format**\
 [![gendiff-json-format](https://asciinema.org/a/PqYiWqUDYJbvKBjbY3MjEpuC9.svg)](https://asciinema.org/a/PqYiWqUDYJbvKBjbY3MjEpuC9)
-
-### how to install package
-Для установки пакета можно использовать команду:
-```
-pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple sinist3rr_gendiff --user --no-cache-dir
-```
 

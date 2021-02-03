@@ -19,11 +19,11 @@ REMOVED = '-'
 STALE = ' '
 
 
-def stylish_format_wrapper(diff_tree):
-    return '{}}}'.format(''.join(stylish_format(diff_tree, START_SPACES, ['{\n'])))
+def stylish_format(diff_tree):
+    return '{}}}'.format(''.join(_stylish_format(diff_tree, START_SPACES, ['{\n'])))
 
 
-def stylish_format(diff_tree, spaces, result):
+def _stylish_format(diff_tree, spaces, result):
     sign = ' '
     new_structure = copy.deepcopy(diff_tree)
     new_structure.sort(key=lambda x: x['name'])
@@ -32,7 +32,7 @@ def stylish_format(diff_tree, spaces, result):
         value = node.get('value')
         if is_nested(node):
             result.append(OPEN_BLOCK.format(mult_space(spaces), sign, name))
-            result = stylish_format(get_children(node), spaces + REGULAR_SPACES, result)
+            result = _stylish_format(get_children(node), spaces + REGULAR_SPACES, result)
             result.append(CLOSE_BLOCK.format(mult_space(spaces)))
         elif is_added(node):
             result = set_sign(result, spaces, ADDED, name, value)

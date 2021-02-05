@@ -11,15 +11,9 @@
 
 
 ### how to install package
-Use the following commands:
+
 ```
-$ git clone https://github.com/sinist3rr/python-project-lvl2.git
-$ cd python-project-lvl2
-$ python -m pip install --upgrade pip
-$ pip install poetry
-$ make install
-$ make build
-$ pip install --user dist/hexlet_code-0.3.20-py3-none-any.whl
+pip install --user git+https://github.com/sinist3rr/python-project-lvl2.git
 ```
 
 ### asciinema

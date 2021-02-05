@@ -22,5 +22,5 @@ def parse_file(filename):
                 print('Incorrect extension {}'.format(ext))
     except (JSONDecodeError, ScannerError):
         raise ValueError("Invalid file type.")
-    except IOError:
+    except OSError:
         raise ValueError("File is not available.")

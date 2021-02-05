@@ -15,7 +15,7 @@ VALUE_BLOCK = '{}{} {}: {}\n'
 CLOSE_BLOCK = '{}  }}\n'
 ADDED = '+'
 REMOVED = '-'
-STALE = ' '
+UNCHANGED = ' '
 
 
 def stylish_format(diff_tree):
@@ -37,7 +37,7 @@ def _stylish_format(diff_tree, spaces, result):
         elif is_deleted(node):
             result = format_node(result, spaces, REMOVED, name, value)
         elif is_unchanged(node):
-            result = format_node(result, spaces, STALE, name, value)
+            result = format_node(result, spaces, UNCHANGED, name, value)
         elif is_changed(node):
             result = format_node(result, spaces, REMOVED, name, value[0])
             result = format_node(result, spaces, ADDED, name, value[1])

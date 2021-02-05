@@ -33,14 +33,14 @@ def _stylish_format(diff_tree, spaces, result):
             result = _stylish_format(get_children(node), spaces + REGULAR_SPACES, result)
             result.append(CLOSE_BLOCK.format(calculate_indentation(spaces)))
         elif is_added(node):
-            result = format_node(result, spaces, ADDED, name, value)
+            format_node(result, spaces, ADDED, name, value)
         elif is_deleted(node):
-            result = format_node(result, spaces, REMOVED, name, value)
+            format_node(result, spaces, REMOVED, name, value)
         elif is_unchanged(node):
-            result = format_node(result, spaces, UNCHANGED, name, value)
+            format_node(result, spaces, UNCHANGED, name, value)
         elif is_changed(node):
-            result = format_node(result, spaces, REMOVED, name, value[0])
-            result = format_node(result, spaces, ADDED, name, value[1])
+            format_node(result, spaces, REMOVED, name, value[0])
+            format_node(result, spaces, ADDED, name, value[1])
     return result
 
 
@@ -48,13 +48,12 @@ def format_node(result, spaces, sign, name, value):
     if isinstance(value, dict):
         result.append(OPEN_BLOCK.format(calculate_indentation(spaces), sign, name))
         for key, nested in value.items():
-            result = format_node(result, spaces + REGULAR_SPACES, ' ', key, nested)
+            format_node(result, spaces + REGULAR_SPACES, ' ', key, nested)
         result.append(CLOSE_BLOCK.format(calculate_indentation(spaces)))
     else:
         result.append(VALUE_BLOCK.format(
             calculate_indentation(spaces), sign, name, format_stylish_value(value)
         ))
-    return result
 
 
 def calculate_indentation(count):

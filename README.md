@@ -10,7 +10,7 @@
 ![Actions Status](https://github.com/sinist3rr/python-project-lvl2/workflows/hexlet-check/badge.svg)
 
 
-### how to install package
+### How to install package
 
 ```
 pip install --user git+https://github.com/sinist3rr/python-project-lvl2.git

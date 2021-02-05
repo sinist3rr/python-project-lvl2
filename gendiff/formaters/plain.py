@@ -1,4 +1,3 @@
-import copy
 from gendiff.diff_structure import (
     is_nested,
     is_added,
@@ -13,13 +12,12 @@ def plain_format(diff_tree):
 
 
 def _plain_format(diff_tree, result, name=''):
-    new_structure = copy.deepcopy(diff_tree)
-    new_structure.sort(key=lambda x: x['name'])
+    sorted_diff_tree = sorted(diff_tree, key=lambda x: x['name'])
     if not name:
         composite_key = ''
     else:
         composite_key = name + '.'
-    for node in new_structure:
+    for node in sorted_diff_tree:
         key = node['name']
         if is_nested(node):
             result = _plain_format(

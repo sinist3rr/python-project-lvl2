@@ -1,4 +1,3 @@
-import copy
 from gendiff.diff_structure import (
     is_nested,
     is_added,
@@ -25,9 +24,8 @@ def stylish_format(diff_tree):
 
 def _stylish_format(diff_tree, spaces, result):
     sign = ' '
-    new_structure = copy.deepcopy(diff_tree)
-    new_structure.sort(key=lambda x: x['name'])
-    for node in new_structure:
+    sorted_diff_tree = sorted(diff_tree, key=lambda x: x['name'])
+    for node in sorted_diff_tree:
         name = node.get('name')
         value = node.get('value')
         if is_nested(node):

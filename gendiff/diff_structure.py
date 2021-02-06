@@ -42,22 +42,22 @@ def create_diff_tree(before_dict, after_dict):
     keys = before_dict.keys() | after_dict.keys()
     tree = []
     for key in keys:
-        temp_structure = {}
-        temp_structure['name'] = key
+        diff_tree = {}
+        diff_tree['name'] = key
         if key not in before_dict:
-            temp_structure[STATE] = ADDED
-            temp_structure[VALUE] = after_dict[key]
+            diff_tree[STATE] = ADDED
+            diff_tree[VALUE] = after_dict[key]
         elif key not in after_dict:
-            temp_structure[STATE] = DELETED
-            temp_structure[VALUE] = before_dict[key]
+            diff_tree[STATE] = DELETED
+            diff_tree[VALUE] = before_dict[key]
         elif before_dict[key] == after_dict[key]:
-            temp_structure[STATE] = UNCHANGED
-            temp_structure[VALUE] = before_dict[key]
+            diff_tree[STATE] = UNCHANGED
+            diff_tree[VALUE] = before_dict[key]
         elif isinstance(after_dict[key], dict) and isinstance(before_dict[key], dict):
-            temp_structure[STATE] = NESTED
-            temp_structure[CHILDREN] = create_diff_tree(before_dict[key], after_dict[key])
+            diff_tree[STATE] = NESTED
+            diff_tree[CHILDREN] = create_diff_tree(before_dict[key], after_dict[key])
         else:
-            temp_structure[STATE] = CHANGED
-            temp_structure[VALUE] = (before_dict[key], after_dict[key])
-        tree.append(temp_structure)
+            diff_tree[STATE] = CHANGED
+            diff_tree[VALUE] = (before_dict[key], after_dict[key])
+        tree.append(diff_tree)
     return tree

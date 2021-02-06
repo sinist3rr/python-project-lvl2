@@ -56,8 +56,8 @@ def format_node(result, spaces, sign, name, value):
         ))
 
 
-def calculate_indentation(count):
-    return ' ' * count
+def calculate_indentation(recursion_depth):
+    return ' ' * recursion_depth
 
 
 def format_stylish_value(value):

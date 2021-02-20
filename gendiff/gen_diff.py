@@ -4,7 +4,7 @@ from gendiff.diff_structure import create_diff_tree
 
 
 def generate_diff(file1, file2, format=STYLISH_STYLE):
-    parsed_file1 = parse_file(file1)
-    parsed_file2 = parse_file(file2)
-    tree = create_diff_tree(parsed_file1, parsed_file2)
+    file1_structure = parse_file(file1)
+    file2_structure = parse_file(file2)
+    tree = create_diff_tree(file1_structure, file2_structure)
     return format_diff_tree(format, tree)

@@ -39,8 +39,9 @@ def _stylish_format(diff_tree, spaces, result):
         elif is_unchanged(node):
             format_node(result, spaces, UNCHANGED, name, value)
         elif is_changed(node):
-            format_node(result, spaces, REMOVED, name, value[0])
-            format_node(result, spaces, ADDED, name, value[1])
+            before, after = value
+            format_node(result, spaces, REMOVED, name, before)
+            format_node(result, spaces, ADDED, name, after)
     return result
 
 
